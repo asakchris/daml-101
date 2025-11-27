@@ -1,0 +1,31 @@
+module Collections where
+
+import Daml.Script
+import DA.List
+
+aListOfInt : [Int]   -- Old style uses `List Int`
+aListOfInt = [1,2,3,4]
+
+oldStyleListOfInt : List Int
+oldStyleListOfInt = [5,6,7,8,9]
+collectionScript = script do
+    debug $ aListOfInt
+    debug $ oldStyleListOfInt
+    debug $ aListOfInt <> oldStyleListOfInt
+    let
+        newList : [Int]
+        newList = aListOfInt <> oldStyleListOfInt
+    
+    debug $ newList
+    debug $ "Prepended with 10: " <> show (10 :: newList)
+    debug $ "Appended with 10: " <> show (reverse (10 :: reverse (newList)))
+    debug $ head newList
+    debug $ tail newList
+    debug $ init newList
+    debug $ last newList
+    debug $ take 3 newList
+    debug $ elem 0 newList
+    debug $ elem 1 newList
+    debug $ sort [3,1,31,-10]
+    debug $ sum newList
+    debug $ product newList

@@ -22,6 +22,12 @@ doubleMe x = x * 2
 doubleUs: Int -> Int -> Int
 doubleUs x y = doubleMe x + doubleMe y
 
+concatTwoStrings : Text -> Text -> Text
+concatTwoStrings x y = x <> y
+
+decimalToInteger : Decimal -> Int
+decimalToInteger x = truncate x
+
 testFunctions : Script()
 testFunctions = do
     debug $ increment 3
@@ -34,3 +40,5 @@ testFunctions = do
     debug $ doubleMe 3
     debug $ doubleUs 3 4
     
+    debug $ concatTwoStrings "Hello, " "World!"
+    debug $ decimalToInteger 3.1451

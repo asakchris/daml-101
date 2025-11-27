@@ -1,0 +1,17 @@
+module HelloTypeVariable where
+
+import Daml.Script
+
+-- This function takes a value of any type 'a' and returns a Text.
+-- The 'Show a =>' part is the constraint.
+hello : Show a => a -> Text
+hello x =
+  -- The 'show' function is available because we know 'a' is a member of the Show class.
+  "Hello, " <> show x <> "!"
+
+runHelloExample : Script ()
+runHelloExample = script do
+  -- We can call the same 'hello' function with different data types...
+  debug $ hello 123       -- Works because Int is in the Show class
+  debug $ hello ["a","b"] -- Works because List is in the Show class
+  debug $ hello (1, True) -- Works because Tuple is in the Show class

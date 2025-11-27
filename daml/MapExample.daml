@@ -1,0 +1,23 @@
+module MapExample where
+
+import Daml.Script
+import DA.Map as Map
+
+mapTest : Script()
+mapTest = do
+    let myMap : Map.Map Text Int = Map.fromList [("Alice", 30), ("Bob", 25), ("Charlie", 35)]
+    debug $ "Initial Map: " <> show myMap
+
+    let ageOfAlice = Map.lookup "Alice" myMap
+    debug $ "Age of Alice: " <> show ageOfAlice
+
+    let updatedMap = Map.insert "David" 28 myMap
+    debug $ "Updated Map after adding David: " <> show updatedMap
+
+    let removedMap = Map.delete "Bob" updatedMap
+    debug $ "Map after removing Bob: " <> show removedMap
+
+    let allNames = Map.keys removedMap
+    debug $ "All names in the map: " <> show allNames
+
+    return ()
