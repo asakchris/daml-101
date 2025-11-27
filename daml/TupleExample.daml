@@ -1,0 +1,24 @@
+module TupleExample where
+
+import Daml.Script
+import DA.Tuple
+
+tupleTest : Script()
+tupleTest = do
+    let myTuple : (Int, Text, Bool) = (42, "DAML", True)
+    let (num, str, bool) = myTuple
+
+    debug $ "The number is: " <> show num
+    debug $ "The string is: " <> str
+    debug $ "The boolean is: " <> show bool
+
+    let anotherTuple = (num + 1, str <> " is great!", not bool)
+    debug $ "Another tuple: " <> show anotherTuple
+
+    debug $ "First element of myTuple: " <> show (fst3 myTuple)
+    debug $ "Second element of myTuple: " <> show (snd3 myTuple)
+    debug $ "Third element of myTuple: " <> show (thd3 myTuple)
+
+    debug $ "First element of anotherTuple: " <> show anotherTuple._1
+
+    return ()

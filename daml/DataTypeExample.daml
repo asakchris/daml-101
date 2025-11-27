@@ -1,0 +1,32 @@
+module DataTypeExample where
+
+import Daml.Script
+import DA.Date
+import DA.Time
+
+datatype_test : Script()
+datatype_test = do
+    let amount : Int = 10
+    debug $ "The amount is: " <> show amount
+
+    let amount1: Numeric 12 = 99.99
+    debug $ "The numeric amount is: " <> show amount1
+
+    now1 <- getTime
+    debug $ "The current time is: " <> show now1
+
+    let
+        dateOfBirth : Date = date 2000 Jan 2
+        timeOfBirth : Time = time dateOfBirth 15 30 10
+        today : Date = date 2025 Nov 26
+        now2 : Time = time today 10 30 0
+
+        age1 : RelTime
+        age1 = subTime now2 timeOfBirth
+
+    debug $ "Current Time: " <> show now2
+    debug $ "DOB: " <> show dateOfBirth
+    debug $ "Time of Birth: " <> show timeOfBirth
+    debug $ "Age (in seconds): " <> show age1
+
+    return ()

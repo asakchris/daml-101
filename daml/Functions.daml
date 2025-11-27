@@ -1,0 +1,36 @@
+module Functions where
+
+import Daml.Script
+
+increment: Int -> Int
+increment x = x + 1
+
+decrement x = x - 1
+
+add: Int -> Int -> Int
+add x y = x + y
+
+multiply: Int -> Int -> Int
+multiply x y = x * y
+
+quadFunction: Int -> Int -> Int -> Int
+quadFunction x y z = 3 * x^2 + 2 * y + z
+
+doubleMe: Int -> Int
+doubleMe x = x * 2
+
+doubleUs: Int -> Int -> Int
+doubleUs x y = doubleMe x + doubleMe y
+
+testFunctions : Script()
+testFunctions = do
+    debug $ increment 3
+    debug(increment 4)
+    debug(increment (5))
+    debug $ decrement 10
+    debug $ add 3 3
+    debug $ multiply 4 5
+    debug $ quadFunction 1 2 3
+    debug $ doubleMe 3
+    debug $ doubleUs 3 4
+    
